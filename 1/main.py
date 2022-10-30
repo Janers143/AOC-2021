@@ -19,7 +19,7 @@ class Problem1Solver:
 			prev_value = float('inf')
 			for line in input_file:
 				depth = int(line.strip())
-				increased = (prev_value and depth > prev_value)
+				increased = depth > prev_value
 				nb_increases += 1 if increased else 0
 				prev_value = depth
 

@@ -1,6 +1,6 @@
 class Problem1Solver:
 	'''
-	All utils used to solve problem 1 
+	All utils used to solve problem 1
 	'''
 
 	@staticmethod
@@ -15,7 +15,7 @@ class Problem1Solver:
 			int: The number of depth measurements increases
 		'''
 		nb_increases = 0
-		with open(file, 'r') as input_file:
+		with open(file, 'r', encoding='utf-8') as input_file:
 			prev_value = float('inf')
 			for line in input_file:
 				depth = int(line.strip())
@@ -37,7 +37,7 @@ class Problem1Solver:
 			int: The number of depth measurements depths increases
 		'''
 		nb_increases = 0
-		with open(file, 'r') as input_file:
+		with open(file, 'r', encoding='utf-8') as input_file:
 			window = [float('inf') for _ in range(3)]
 			prev_sum = float('inf')
 			for line in input_file:
@@ -46,7 +46,7 @@ class Problem1Solver:
 				window.insert(0, depth)
 				window.pop()
 				new_sum = sum(window)
-				
+
 				# Check if the depth increased on average
 				increased = (new_sum > prev_sum)
 				prev_sum = new_sum
@@ -56,7 +56,10 @@ class Problem1Solver:
 
 		return nb_increases
 
-if __name__ == '__main__':
+def main():
+	'''
+	Main function
+	'''
 	### First part of the problem
 	nb_increases = Problem1Solver.find_nb_depth_increases('input')
 	print(f'Number of increases : {nb_increases}')
@@ -64,3 +67,6 @@ if __name__ == '__main__':
 	### Second part of the problem
 	nb_window_increase = Problem1Solver.find_nb_depth_increases_window('input')
 	print(f'Number of window increases : {nb_window_increase}')
+
+if __name__ == '__main__':
+	main()

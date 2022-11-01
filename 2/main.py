@@ -37,8 +37,41 @@ class Problem2Solver:
 		return depth * horizontal_position
 
 	@staticmethod
-	def func_part2(file: str) -> None:
-		pass
+	def get_position_multiplication_with_aim(file: str) -> int:
+		'''
+		Gets the final horizontal position and depth
+		This time when moving up and down the submarine 
+		aim changes, not the depth
+		Multiply both values to get the expected result
+
+		Args:
+			file (str): The input file path
+
+		Returns:
+			int: The product of the horizontal position
+				and the depth
+		'''
+		depth = 0
+		horizontal_position = 0
+		aim = 0
+
+		with open(file, 'r', encoding='utf-8') as input_file:
+			for line in input_file:
+				move, dist = line.split()
+				dist = int(dist)
+
+				match move:
+					case 'forward':
+						horizontal_position += dist
+						depth += aim * dist
+					case 'down':
+						aim += dist
+					case 'up':
+						aim -= dist
+					case _:
+						raise Exception(f'Could not get next move : {move}')
+
+		return depth * horizontal_position
 
 def main():
 	'''
@@ -49,7 +82,7 @@ def main():
 	print(f'First part result : {res1}')
 
 	### Second part of the problem
-	res2 = Problem2Solver.func_part2('small_input')
+	res2 = Problem2Solver.get_position_multiplication_with_aim('input')
 	print(f'Second part result : {res2}')
 
 if __name__ == '__main__':

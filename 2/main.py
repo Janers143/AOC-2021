@@ -40,7 +40,7 @@ class Problem2Solver:
 	def get_position_multiplication_with_aim(file: str) -> int:
 		'''
 		Gets the final horizontal position and depth
-		This time when moving up and down the submarine 
+		This time when moving up and down the submarine
 		aim changes, not the depth
 		Multiply both values to get the expected result
 

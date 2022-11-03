@@ -35,3 +35,6 @@ gen_struct/
 
 # pylint configuration file
 .pylintrc
+
+# Private token
+.token

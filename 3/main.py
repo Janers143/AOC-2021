@@ -31,18 +31,13 @@ class Problem3Solver:
 					# bit position
 					nb_ones[i] += 1 if letter == '1' else 0
 
-			# Calculate the gamma rate value
+			# Calculate both the gamma and epsilon rate value
 			gamma_rate_str = ''
+			epsilon_rate_str = ''
 			for k in nb_ones.keys():
-				gamma_rate_str += (
-					'1' if nb_ones.get(k) > nb_lines / 2 else '0'
-				)
-
-			# Calculate the epsilon rate value
-			epsilon_rate_arr = [
-				'0' if l == '1' else '1' for l in gamma_rate_str
-			]
-			epsilon_rate_str = ''.join(epsilon_rate_arr)
+				more_ones = (nb_ones.get(k) > nb_lines / 2)
+				gamma_rate_str += '1' if more_ones else '0'
+				epsilon_rate_str += '0' if more_ones else '1'
 
 			gamma_rate = int(gamma_rate_str, base=2)
 			epsilon_rate = int(epsilon_rate_str, base=2)
@@ -50,8 +45,8 @@ class Problem3Solver:
 		return gamma_rate * epsilon_rate
 
 	@staticmethod
-	def func_part2(file: str) -> None:
-		pass
+	def get_life_support_rating(file: str) -> int:
+		return 0
 
 def main() -> None:
 	'''
@@ -62,7 +57,7 @@ def main() -> None:
 	print(f'First part result : {res1}')
 
 	### Second part of the problem
-	res2 = Problem3Solver.func_part2('input')
+	res2 = Problem3Solver.get_life_support_rating('input')
 	print(f'Second part result : {res2}')
 
 if __name__ == '__main__':
